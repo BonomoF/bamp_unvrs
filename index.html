@@ -112,7 +112,6 @@
             width: calc(100% - 40px); /* Stesso calcolo del button-group */
             gap: 20px; /* Aumentato lo spazio tra le righe dei pulsanti */
             margin: 20px; /* Stesso margin del button-group */
-            /* Rimuovo flex: 1 per evitare che si espanda troppo */
             justify-content: center; /* Centra i pulsanti verticalmente */
             margin-bottom: 20px; /* Ridotto il margine inferiore */
         }
@@ -284,6 +283,7 @@
             
             .button {
                 padding: min(8vh, 50px);
+                font-size: clamp(12px, 2vw, 16px); /* Riduce leggermente la dimensione del font su schermi piccoli */
             }
             
             .bottom-container {
