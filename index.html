@@ -38,7 +38,6 @@
             align-items: center;
             position: relative; /* Necessario per posizionare i pulsanti assolutamente */
             min-height: 100vh;
-            max-height: 100vh; /* Limita l'altezza massima al 100% dell'altezza della viewport */
             height: 100%; /* Assicura che il contenitore occupi l'intera altezza */
             padding: 0; /* Rimosso il padding */
             box-sizing: border-box; /* Include il padding nel calcolo della larghezza */
@@ -115,7 +114,7 @@
             margin: 20px; /* Stesso margin del button-group */
             /* Rimuovo flex: 1 per evitare che si espanda troppo */
             justify-content: center; /* Centra i pulsanti verticalmente */
-            margin-bottom: 150px; /* Aumentato il margine inferiore per evitare sovrapposizioni */
+            margin-bottom: 20px; /* Ridotto il margine inferiore */
         }
         .button-row {
             display: flex;
@@ -136,19 +135,9 @@
             align-items: center;
             justify-content: center;
             font-size: clamp(14px, 2.5vw, 18px); /* Aumentato leggermente il font size */
-            overflow: hidden;
-        }
-        .button-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
         }
         .button:hover {
             background-color: #616161; /* Colore di sfondo del pulsante al passaggio del mouse */
-        }
-        .button:hover .button-image {
-            transform: scale(1.05);
         }
         .bottom-container {
             position: absolute; /* Cambiato da fixed per rimanere nel container */
@@ -169,7 +158,7 @@
             white-space: nowrap;
             overflow: hidden;
             font-family: 'DotGothic16', Arial, sans-serif;
-            width: calc(100% - 70px); /* Ridotta la larghezza per lasciare spazio al pulsante */
+            width: calc(100% - 105px); /* Ridotta la larghezza per lasciare spazio al pulsante */
             height: 35px; /* Ridotta l'altezza del banner */
             display: flex;
             align-items: center;
@@ -352,16 +341,10 @@
         <img src="Images/Globe_bamp.gif" alt="Centered GIF" class="center-image">
         <div class="button-container">
             <div class="button-row">
-                <a href="#" class="button">
-                    <img src="https://placehold.co/400x400/424242/E0E0E0?text=BAMP+1" alt="Template 1" class="button-image">
-                </a>
-                <a href="#" class="button">
-                    <img src="https://placehold.co/400x400/424242/E0E0E0?text=BAMP+2" alt="Template 2" class="button-image">
-                </a>
+                <button class="button">COLLAB 1</button>
+                <button class="button">COLLAB 2</button>
             </div>
-            <a href="#" class="button">
-                <img src="https://placehold.co/400x400/424242/E0E0E0?text=BAMP+3" alt="Template 3" class="button-image">
-            </a>
+            <button class="button">COLLAB 3</button>
         </div>
         <div class="bottom-container">
             <a href="https://www.instagram.com/fit.bamp_/" target="_blank" class="round-button">
