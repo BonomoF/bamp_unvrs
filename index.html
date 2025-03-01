@@ -37,7 +37,11 @@
             flex-direction: column;
             align-items: center;
             position: relative; /* Necessario per posizionare i pulsanti assolutamente */
+            min-height: 100vh;
             height: 100%; /* Assicura che il contenitore occupi l'intera altezza */
+            padding: 0; /* Rimosso il padding */
+            box-sizing: border-box; /* Include il padding nel calcolo della larghezza */
+            overflow: hidden; /* Aggiunto per contenere gli elementi */
         }
         .night-mode {
             background-color: #121212;
@@ -48,8 +52,6 @@
             color: #333333; /* Colore del testo scuro */
         }
         .toggle-button, .logo-button, .round-button {
-            position: absolute;
-            top: 10px;
             background-color: #424242; /* Colore di sfondo del pulsante */
             color: #E0E0E0; /* Colore del testo del pulsante */
             border: none;
@@ -63,8 +65,8 @@
             width: 50px;
             height: 50px;
         }
-        .toggle-button {
-            right: 10px;
+        .toggle-button, .logo-button {
+            position: static; /* Rimuove la posizione assoluta */
         }
         .logo-button {
             left: 10px;
@@ -102,20 +104,51 @@
         .center-image {
             width: 100%;
             max-width: 300px; /* Imposta la larghezza massima per l'immagine */
-            margin-top: 20px; /* Aggiungi un margine superiore per distanziare l'immagine dall'alto */
+            margin-top: 0; /* Rimosso il margine superiore */
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            width: calc(100% - 40px); /* Stesso calcolo del button-group */
+            gap: 20px; /* Aumentato lo spazio tra le righe dei pulsanti */
+            margin: 20px; /* Stesso margin del button-group */
+            /* Rimuovo flex: 1 per evitare che si espanda troppo */
+            justify-content: center; /* Centra i pulsanti verticalmente */
+            margin-bottom: 20px; /* Ridotto il margine inferiore */
+        }
+        .button-row {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+        .button {
+            flex: 1;
+            background-color: #424242;
+            color: #E0E0E0;
+            border: none;
+            padding: min(10vh, 75px); /* Aumentato il padding per rendere i pulsanti più grandi */
+            min-height: 50px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(14px, 2.5vw, 18px); /* Aumentato leggermente il font size */
+        }
+        .button:hover {
+            background-color: #616161; /* Colore di sfondo del pulsante al passaggio del mouse */
         }
         .bottom-container {
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            right: 10px;
+            position: absolute; /* Cambiato da fixed per rimanere nel container */
+            bottom: 20px;
+            width: calc(100% - 40px);
             display: flex;
             align-items: center;
             justify-content: flex-start; /* Allinea gli elementi a sinistra */
-            max-width: 500px; /* Stessa larghezza massima del container principale */
-            margin: 0 auto; /* Centra il contenitore */
-            padding: 0 10px; /* Aggiunge padding uguale ai pulsanti in alto */
+            margin: 0 20px;
             gap: 20px; /* Aumenta la distanza tra gli elementi */
+            box-sizing: border-box;
         }
         .scrolling-pill {
             background-color: #333333;
@@ -196,17 +229,123 @@
             background-color: #D3D3D3; /* Grigio chiaro */
             color: #333333; /* Nero */
         }
+
+        .day-mode .button {
+            background-color: #D3D3D3; /* Grigio chiaro */
+            color: #333333; /* Nero */
+        }
+
+        .day-mode .scrolling-pill {
+            background-color: #D3D3D3; /* Grigio chiaro */
+            color: #006400; /* Verde scuro per miglior contrasto */
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between; /* Distribuisce lo spazio tra i pulsanti */
+            gap: 10px; /* Spazio tra i pulsanti */
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 100%; /* Occupa il 100% dello spazio orizzontale */
+            width: calc(100% - 40px); /* Rispetta i margini */
+            position: relative; /* Cambiato da absolute */
+            top: 0;
+            right: 0;
+            margin: 20px; /* Sostituito padding con margin per mantenere lo spazio interno */
+            margin-bottom: 10px; /* Ridotto il margine inferiore */
+        }
+
+        .debug .container {
+            border: 2px solid blue; /* Bordo blu per il debug */
+        }
+
+        .debug .center-image {
+            border: 2px solid green; /* Bordo verde per il debug */
+        }
+
+        .debug .button-container {
+            border: 2px solid red; /* Bordo rosso per il debug */
+        }
+
+        .debug .bottom-container {
+            border: 2px solid yellow; /* Bordo giallo per il debug */
+        }
+
+        .debug .button-group {
+            border: 2px solid purple; /* Bordo viola per il debug */
+        }
+
+        /* Media query per dispositivi mobili */
+        @media (max-width: 480px) {
+            .button-container {
+                gap: 10px;
+            }
+            
+            .button {
+                padding: min(8vh, 50px);
+            }
+            
+            .bottom-container {
+                bottom: 10px;
+            }
+            
+            .scrolling-pill {
+                font-size: 12px;
+                height: 30px;
+            }
+        }
+
+        /* Media query per tablet */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .button {
+                padding: min(9vh, 60px);
+            }
+        }
+
+        /* Media query per schermi molto alti */
+        @media (min-height: 1000px) {
+            .button-container {
+                gap: 3vh;
+            }
+            
+            .button {
+                padding: min(7vh, 75px);
+            }
+        }
+
+        /* Media query per dispositivi con aspect ratio estremi */
+        @media (max-aspect-ratio: 2/3) {
+            .button-container {
+                margin-bottom: 15vh;
+            }
+        }
+
+        @media (min-aspect-ratio: 2/1) {
+            .button {
+                padding: min(6vh, 50px);
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <button class="toggle-button" onclick="toggleMode()">
-            <i class="fas fa-sun"></i>
-        </button>
-        <button class="logo-button" onclick="openModal()">
-            <img src="Images/Logo2.png" alt="Logo">
-        </button>
+        <div class="button-group">
+            <button class="logo-button" onclick="openModal()">
+                <img src="Images/Logo2.png" alt="Logo">
+            </button>
+            <button class="toggle-button" onclick="toggleMode()">
+                <i class="fas fa-sun"></i>
+            </button>
+        </div>
         <img src="Images/Globe_bamp.gif" alt="Centered GIF" class="center-image">
+        <div class="button-container">
+            <div class="button-row">
+                <button class="button">COLLAB 1</button>
+                <button class="button">COLLAB 2</button>
+            </div>
+            <button class="button">COLLAB 3</button>
+        </div>
         <div class="bottom-container">
             <a href="https://www.instagram.com/fit.bamp_/" target="_blank" class="round-button">
                 <img src="Images/instagram.svg" alt="Instagram">
@@ -225,6 +364,9 @@
             <p>Sito web creato da Federico Bonomo</p>
             <p>Benvenuti nel mio progetto Bamp Unvrs, dove racconto la mia vita e le mie esperienze.</p>
             <p style="font-size: 10px;">Visit number: <span id="visitCount"></span></p>
+            <button class="debug-button" onclick="toggleDebugBorders()">
+                <i class="fas fa-bug"></i>
+            </button>
         </div>
     </div>
 
@@ -274,6 +416,10 @@
 
         // Aggiorna il contatore delle visite al caricamento della pagina
         window.onload = updateVisitCount;
+
+        function toggleDebugBorders() {
+            document.body.classList.toggle('debug');
+        }
     </script>
 </body>
 </html>
