@@ -66,7 +66,7 @@
         .social-icons {
             display: flex;
             gap: 30px;
-            margin-top: -10px; /* Riduce lo spazio sopra le icone social */
+            margin-top: -30px; /* Riduce lo spazio sopra le icone social */
             justify-content: center; /* Centra le icone orizzontalmente */
         }
         .social-icon {
@@ -210,15 +210,11 @@
             padding: 5px;
         }
         .share-menu-body img {
-            width: 90%;
+            width: 100%;
             max-width: 400px;
-            margin-bottom: 10px;
+            margin-bottom: 0px;
         }
-        .share-menu-body .username {
-            font-size: 1.2em;
-            text-align: center;
-            color: #00FF00;
-        }
+       
         .share-icons {
             display: flex;
             flex-wrap: wrap;
@@ -299,14 +295,14 @@
             margin-left: 20px;
             color: #E0E0E0; /* Colore del testo chiaro */
             position: absolute;
-            top: -10%;
+            top: -5%;
             left: 10px;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1 class="welcome-title">Ciao</h1>
+        <h1 class="welcome-title">Ciao!</h1>
         <button class="share-button">
             <i class="fas fa-share-alt"></i>
         </button>
@@ -444,35 +440,6 @@
                 window.location.href = webURL;
             }, 200); // Adjust delay as needed
         }
-
-        // Metodo 1: Utilizzo di Local Storage
-        const userNameFromLocalStorage = localStorage.getItem('userName');
-        if (userNameFromLocalStorage) {
-            document.querySelector('.welcome-title').textContent = `Ciao ${userNameFromLocalStorage}`;
-        }
-
-        // Metodo 2: Utilizzo di Cookie
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
-
-        const userNameFromCookie = getCookie('userName');
-        if (userNameFromCookie) {
-            document.querySelector('.welcome-title').textContent = `Ciao ${userNameFromCookie}`;
-        }
-
-        // Metodo 3: Utilizzo di una chiamata API
-        fetch('/api/getUserName')
-            .then(response => response.json())
-            .then(data => {
-                const userNameFromAPI = data.userName;
-                if (userNameFromAPI) {
-                    document.querySelector('.welcome-title').textContent = `Ciao ${userNameFromAPI}`;
-                }
-            })
-            .catch(error => console.error('Errore nel recupero del nome utente:', error));
     </script>
 </body>
 </html>
