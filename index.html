@@ -55,8 +55,8 @@
             flex-direction: column;
         }
         .center-image {
-            width: 100%;
-            max-width: 300px; /* Imposta la larghezza massima per l'immagine */
+            width: 90%; /* Aumenta la larghezza dell'immagine */
+            max-width: 400px; /* Imposta la larghezza massima per l'immagine */
             margin-top: 0; /* Rimuove il margine superiore */
             align-self: center; /* Centra l'immagine orizzontalmente */
         }
@@ -173,8 +173,8 @@
         }
 
         .share-menu-body img {
-            width: 100px;
-            height: 100px;
+            width: 90%; /* Aumenta la larghezza dell'immagine */
+            max-width: 400px; /* Imposta la larghezza massima per l'immagine */
             margin-bottom: 10px;
         }
 
@@ -295,14 +295,14 @@
     <main>
         <img src="Images/Globe_bamp.gif" alt="Centered GIF" class="center-image">
         <div class="social-icons">
-            <a href="mailto:bonomofederico@icloud.com" class="social-icon">
-                <i class="far fa-envelope"></i>
-            </a>
-            <a href="https://www.instagram.com/fit.bamp_/" class="social-icon">
+            <a href="#" class="social-icon" onclick="openSocialApp('instagram', 'fit.bamp_', 'https://www.instagram.com/fit.bamp_/')">
                 <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://www.tiktok.com/@fit.bamp_/" class="social-icon">
+            <a href="#" class="social-icon" onclick="openSocialApp('tiktok', '@fit.bamp_/', 'https://www.tiktok.com/@fit.bamp_/')">
                 <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="mailto:bonomofederico@icloud.com" class="social-icon">
+                <i class="far fa-envelope"></i>
             </a>
         </div>
         <div class="affiliate-links">
@@ -406,6 +406,22 @@
             document.querySelectorAll('.share-icon-button').forEach(btn => btn.classList.remove('active'));
             // Aggiungi la classe 'active' al pulsante corrente
             button.classList.add('active');
+        }
+
+        function openSocialApp(platform, username, webURL) {
+            let appURL;
+            if (platform === 'instagram') {
+                appURL = 'instagram://user?username=' + username;
+            } else if (platform === 'tiktok') {
+                appURL = 'tiktok://@' + username;
+            }
+
+            window.location.href = appURL;
+
+            // Fallback to web URL after a short delay
+            setTimeout(() => {
+                window.location.href = webURL;
+            }, 200); // Adjust delay as needed
         }
     </script>
 </body>
