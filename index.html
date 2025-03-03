@@ -2,61 +2,39 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>bamp wrld</title>
-    <!-- Include il font specifico -->
-    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/planet-kosmos">
-    <!-- Include un font in stile terminale anni '80 -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-    <!-- Include un font a puntini -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap">
-    <!-- Include Font Awesome for icons -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Bamp Unvrs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap">
     <style>
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #121212; /* Colore di sfondo scuro */
-            display: flex;
-            justify-content: center; /* Centra il contenitore orizzontalmente */
-            align-items: flex-start; /* Allinea gli elementi in alto */
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
             color: #E0E0E0; /* Colore del testo chiaro */
-            -webkit-touch-callout: none; /* Impedisce il download delle immagini */
-            -webkit-user-select: none; /* Impedisce la selezione del testo */
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        .container {
-            width: 100%;
-            max-width: 500px; /* Limita la larghezza massima del contenitore */
+            height: 100vh; /* Imposta l'altezza al 100% dell'altezza della viewport */
+            overflow-y: auto; /* Permette lo scorrimento verticale */
             display: flex;
             flex-direction: column;
-            align-items: center;
-            position: relative; /* Necessario per posizionare i pulsanti assolutamente */
-            min-height: 100vh;
-            height: 100vh; /* Imposta l'altezza al 100% dell'altezza della viewport */
-            padding: 0; /* Rimosso il padding */
-            box-sizing: border-box; /* Include il padding nel calcolo della larghezza */
-            overflow: hidden; /* Aggiunto per contenere gli elementi */
+            justify-content: space-between; /* Distribuisce lo spazio tra gli elementi */
         }
-        .night-mode {
-            background-color: #121212;
+        header {
+            background-color: transparent; /* Colore di sfondo scuro per elementi */
+            text-align: center;
+            padding: 2.2em 0;
+            position: relative;
+            color: #E0E0E0; /* Colore del testo chiaro */
+        }
+        .share-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #1E1E1E; /* Colore di sfondo scuro per elementi */
             color: #E0E0E0;
-        }
-        .day-mode {
-            background-color: #F5DEB3; /* Colore di sfondo sabbia */
-            color: #333333; /* Colore del testo scuro */
-        }
-        .toggle-button, .logo-button, .round-button {
-            background-color: #424242; /* Colore di sfondo del pulsante */
-            color: #E0E0E0; /* Colore del testo del pulsante */
             border: none;
             padding: 10px;
-            border-radius: 50%; /* Rende i pulsanti rotondi */
+            border-radius: 50%;
             cursor: pointer;
             transition: background-color 0.3s ease;
             display: flex;
@@ -65,109 +43,64 @@
             width: 50px;
             height: 50px;
         }
-        .toggle-button, .logo-button {
-            position: static; /* Rimuove la posizione assoluta */
+        .share-button:hover {
+            background-color: #333333; /* Colore di sfondo del pulsante al passaggio del mouse */
         }
-        .logo-button {
-            left: 10px;
-        }
-        .round-button {
-            bottom: 10px;
-            left: 10px;
-            width: 50px; /* Dimensione fissa per il pulsante */
-            height: 50px; /* Stessa dimensione per mantenere la forma rotonda */
-            padding: 0; /* Rimuovi il padding che deforma il pulsante */
-            border-radius: 50%;
-            background-color: #424242;
+        main {
+            padding: 1em;
+            flex: 1; /* Permette al main di espandersi per occupare lo spazio disponibile */
             display: flex;
+            justify-content: flex-start; /* Allinea l'immagine in alto */
             align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-            margin: auto 0; /* Mantiene il centramento verticale */
-        }
-        .toggle-button:hover, .logo-button:hover, .round-button:hover {
-            background-color: #616161; /* Colore di sfondo del pulsante al passaggio del mouse */
-        }
-        .toggle-button i, .logo-button img, .round-button img {
-            font-size: 24px;
-            width: 100%; /* Occupare tutto lo spazio disponibile */
-            height: 100%; /* Occupare tutto lo spazio disponibile */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .logo-button img {
-            width: 100%; /* Occupare tutto lo spazio disponibile */
-            height: 100%; /* Occupare tutto lo spazio disponibile */
-            object-fit: cover; /* Assicura che l'immagine copra tutto lo spazio */
+            flex-direction: column;
         }
         .center-image {
             width: 100%;
             max-width: 300px; /* Imposta la larghezza massima per l'immagine */
-            margin-top: 0; /* Rimosso il margine superiore */
+            margin-top: 0; /* Rimuove il margine superiore */
+            align-self: center; /* Centra l'immagine orizzontalmente */
         }
-        .button-container {
+        .social-icons {
             display: flex;
-            flex-direction: column;
-            width: calc(100% - 40px); /* Stesso calcolo del button-group */
-            gap: 20px; /* Aumentato lo spazio tra le righe dei pulsanti */
-            margin: 20px; /* Stesso margin del button-group */
-            justify-content: center; /* Centra i pulsanti verticalmente */
-            margin-bottom: 20px; /* Ridotto il margine inferiore */
+            gap: 30px;
+            margin-top: 20px;
+            justify-content: center; /* Centra le icone orizzontalmente */
         }
-        .button-row {
-            display: flex;
-            gap: 10px;
+        .social-icon {
+            color: #E0E0E0; /* Colore del testo chiaro */
+            font-size: 24px; /* Dimensione delle icone */
+            transition: color 0.3s ease;
+        }
+        .social-icon:hover {
+            color: #00FF00; /* Colore verde fluo al passaggio del mouse */
+        }
+        footer {
+            background-color: transparent; /* Rimuove lo sfondo */
+            color: white;
+            text-align: center;
+            padding: 1em 0;
             width: 100%;
+            position: fixed; /* Fissa il footer al fondo dello schermo */
+            bottom: 0; /* Posiziona il footer al fondo */
+            z-index: 1000; /* Assicura che il footer sia sopra tutto */
         }
-        .button {
-            flex: 1;
-            background-color: #424242;
-            color: #E0E0E0;
-            border: none;
-            padding: min(10vh, 75px); /* Aumentato il padding per rendere i pulsanti più grandi */
-            min-height: 50px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: clamp(14px, 2.5vw, 18px); /* Aumentato leggermente il font size */
-        }
-        .button:hover {
-            background-color: #616161; /* Colore di sfondo del pulsante al passaggio del mouse */
-        }
-        .bottom-container {
-            position: absolute; /* Cambiato da fixed a absolute per rimanere all'interno del container */
-            bottom: 20px;
-            width: calc(100% - 40px);
-            display: flex;
-            align-items: center;
-            justify-content: flex-start; /* Allinea gli elementi a sinistra */
-            margin: 0 20px;
-            gap: 20px; /* Aumenta la distanza tra gli elementi */
-            box-sizing: border-box;
-        }
-        .scrolling-pill {
-            background-color: #333333;
-            color: #00FF00;
+        .scrolling-banner {
+            background-color: #00FF00; /* Colore di sfondo verde fluo */
+            color: #121212; /* Colore del testo scuro */
             border-radius: 25px;
-            padding: 10px 20px; /* Ridotto il padding verticale */
+            padding: 10px 20px;
             white-space: nowrap;
             overflow: hidden;
-            font-family: 'DotGothic16', Arial, sans-serif;
-            width: calc(100% - 105px); /* Ridotta la larghezza per lasciare spazio al pulsante */
-            height: 35px; /* Ridotta l'altezza del banner */
+            font-family: 'DotGothic16', Arial, sans-serif; /* Font a puntini */
+            width: 80%;
+            height: 35px;
             display: flex;
             align-items: center;
-            margin-left: auto; /* Sposta il banner verso destra */
+            margin: 0 auto;
         }
-        .scrolling-pill span {
+        .scrolling-banner span {
             display: inline-block;
-            padding-left: 0; /* Inizia subito senza aspettare */
-            animation: scroll 10s linear infinite;
-            font-size: 14px; /* Ridotta leggermente la dimensione del testo */
+            animation: scroll 7s linear infinite;
         }
         @keyframes scroll {
             0% {
@@ -177,296 +110,302 @@
                 transform: translateX(-100%);
             }
         }
-        .modal {
-            display: none; /* Nascondi il popup di default */
+        /* Media query per schermi più grandi */
+        @media (min-width: 768px) {
+            body {
+                width: 50vw; /* Limita la larghezza al 50% della viewport */
+                margin: 0 auto; /* Centra il contenuto orizzontalmente */
+            }
+        }
+        /* Stili per il menu di condivisione */
+        .share-menu {
             position: fixed;
-            z-index: 1;
+            bottom: -70%; /* Nasconde il menu inizialmente */
             left: 0;
+            width: 100%;
+            height: auto; /* Altezza automatica */
+            background-color: #1E1E1E; /* Colore di sfondo scuro per il menu di condivisione */
+            color: #E0E0E0;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            transition: bottom 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 1001; /* Assicura che il menu sia sopra tutto */
+        }
+
+        .share-menu.active {
+            bottom: 0; /* Mostra il menu */
+        }
+
+        .share-menu-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .share-menu-title {
+            font-size: 1.5em;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .share-menu-close {
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #E0E0E0; /* Colore del testo chiaro */
+        }
+
+        .share-menu-body {
+            width: calc(100% - 40px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            background-color: #2C2C2C; /* Colore di sfondo per il corpo del menu di condivisione */
+            border-radius: 10px; /* Bordo arrotondato */
+            padding: 5px;
+        }
+
+        .share-menu-body img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .share-menu-body .username {
+            font-size: 1.2em;
+            text-align: center;
+            color: #00FF00; /* Colore verde fluo per il testo */
+        }
+
+        .affiliate-links {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px; /* Spazio tra i pulsanti */
+            margin-top: 20px; /* Spazio sopra i pulsanti */
+        }
+
+        .affiliate-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: calc(100% - 60px); /* Riduce la larghezza del pulsante */
+            height: 200px; /* Altezza fissa per i pulsanti */
+            padding: 10px;
+            background-color: #1E1E1E; /* Colore di sfondo scuro per il pulsante */
+            color: #E0E0E0; /* Colore del testo chiaro */
+            text-decoration: none;
+            border-radius: 10px; /* Bordo arrotondato */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .affiliate-title {
+            font-weight: bold;
+            text-align: left;
+            z-index: 1; /* Assicura che il testo sia sopra l'immagine */
+            margin-left: 30px; /* Aumenta lo spazio a sinistra del titolo */
+        }
+
+        .affiliate-image {
+            position: absolute;
+            right: 0;
             top: 0;
+            width: 50%; /* Larghezza dell'immagine */
+            height: 100%; /* Altezza dell'immagine */
+            object-fit: cover; /* Ridimensiona l'immagine automaticamente */
+            z-index: 0; /* Assicura che l'immagine sia sotto il testo */
+            opacity: 0.5; /* Sfuma l'immagine */
+        }
+
+        /* Sovrapposizione sfocata */
+        .blur-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
-        }
-        .modal-content {
-            background-color: #424242;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 400px;
-            color: #E0E0E0;
-            font-family: 'Press Start 2P', Arial, sans-serif; /* Font specifico */
-        }
-        .modal-content p {
-            font-weight: normal; /* Testo normale */
-            font-size: 14px; /* Dimensione del testo */
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
         }
 
-        /* Media query per schermi più piccoli */
-        @media (max-width: 600px) {
-            .center-image {
-                max-width: 80%; /* Riduci la larghezza massima dell'immagine su schermi più piccoli */
-            }
+        .blur-overlay.active {
+            display: block;
         }
 
-        .day-mode .toggle-button,
-        .day-mode .logo-button,
-        .day-mode .round-button {
-            background-color: #D3D3D3; /* Grigio chiaro */
-            color: #333333; /* Nero */
+        /* Applica la sfocatura allo sfondo quando il menu di condivisione è attivo */
+        body.menu-active main,
+        body.menu-active header,
+        body.menu-active footer {
+            filter: blur(5px); /* Aggiunge la sfocatura */
         }
 
-        .day-mode .button {
-            background-color: #D3D3D3; /* Grigio chiaro */
-            color: #333333; /* Nero */
+        body.menu-active .scrolling-banner {
+            display: block;
+            filter: none; /* Rimuove la sfocatura dal banner */
         }
 
-        .day-mode .scrolling-pill {
-            background-color: #D3D3D3; /* Grigio chiaro */
-            color: #006400; /* Verde scuro per miglior contrasto */
-        }
-
-        .button-group {
+        /* Stili per le icone di condivisione */
+        .share-icons {
             display: flex;
-            justify-content: space-between; /* Distribuisce lo spazio tra i pulsanti */
-            gap: 10px; /* Spazio tra i pulsanti */
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 100%; /* Occupa il 100% dello spazio orizzontale */
-            width: calc(100% - 40px); /* Rispetta i margini */
-            position: relative; /* Cambiato da absolute */
-            top: 0;
-            right: 0;
-            margin: 20px; /* Sostituito padding con margin per mantenere lo spazio interno */
-            margin-bottom: 10px; /* Ridotto il margine inferiore */
-        }
-
-        .debug .container {
-            border: 2px solid blue; /* Bordo blu per il debug */
-        }
-
-        .debug .center-image {
-            border: 2px solid green; /* Bordo verde per il debug */
-        }
-
-        .debug .button-container {
-            border: 2px solid red; /* Bordo rosso per il debug */
-        }
-
-        .debug .bottom-container {
-            border: 2px solid yellow; /* Bordo giallo per il debug */
-        }
-
-        .debug .button-group {
-            border: 2px solid purple; /* Bordo viola per il debug */
-        }
-
-        /* Media query per dispositivi mobili */
-        @media (max-width: 480px) {
-            .button-container {
-                gap: 10px;
-            }
-            
-            .button {
-                padding: min(8vh, 50px);
-                font-size: clamp(12px, 2vw, 16px); /* Riduce leggermente la dimensione del font su schermi piccoli */
-            }
-            
-            .bottom-container {
-                bottom: 10px;
-            }
-            
-            .scrolling-pill {
-                font-size: 12px;
-                height: 30px;
-            }
-        }
-
-        /* Media query per tablet */
-        @media (min-width: 481px) and (max-width: 768px) {
-            .button {
-                padding: min(9vh, 60px);
-            }
-        }
-
-        /* Media query per schermi molto alti */
-        @media (min-height: 1000px) {
-            .button-container {
-                gap: 3vh;
-            }
-            
-            .button {
-                padding: min(7vh, 75px);
-            }
-        }
-
-        /* Media query per dispositivi con aspect ratio estremi */
-        @media (max-aspect-ratio: 2/3) {
-            .button-container {
-                margin-bottom: 15vh;
-            }
-        }
-
-        @media (min-aspect-ratio: 2/1) {
-            .button {
-                padding: min(6vh, 50px);
-            }
-        }
-
-        .social-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
         }
-
-        .social-box .round-button {
+        .share-icon-button {
+            background-color: #333333; /* Cambia il colore di sfondo */
+            color: #E0E0E0; /* Cambia il colore del testo */
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 50px;
             height: 50px;
-            padding: 0;
-            border-radius: 50%;
-            background-color: #424242;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
+            font-size: 20px;
         }
-
-        .social-box .round-button img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .share-icon-button:hover {
+            background-color: #555; /* Cambia il colore di sfondo al passaggio del mouse */
         }
-
-        .social-box .round-button:hover {
-            background-color: #616161;
-        }
-
-        .round-button i {
-            font-size: 24px; /* Stessa dimensione del sole nel pulsante in alto a destra */
-            color: red; /* Colore rosso per il cuore */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-        }
-
-        .round-button {
-            text-decoration: none; /* Rimuove la sottolineatura del link */
+        .share-icon-button.active {
+            color: #00FF00; /* Cambia il colore del testo quando attivo */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="button-group">
-            <button class="logo-button" onclick="openModal()">
-                <img src="Images/Logo2.png" alt="Logo">
-            </button>
-            <button class="toggle-button" onclick="toggleMode()">
-                <i class="fas fa-sun"></i>
-            </button>
-        </div>
+    <header>
+        <button class="share-button">
+            <i class="fas fa-share-alt"></i>
+        </button>
+    </header>
+    <main>
         <img src="Images/Globe_bamp.gif" alt="Centered GIF" class="center-image">
-        <div class="button-container">
-            <div class="button-row">
-                <button class="button">COLLAB 1</button>
-                <button class="button">COLLAB 2</button>
-            </div>
-            <div class="social-box">
-                <a href="https://www.instagram.com/fit.bamp_/" target="_blank" class="round-button">
-                    <img src="Images/instagram.svg" alt="Instagram">
-                </a>
-            </div>
-        </div>
-        <div class="bottom-container">
-            <a href="https://paypal.me/FedericoBonomo?country.x=IT&locale.x=it_IT" target="_blank" class="round-button">
-                <i class="fas fa-heart"></i>
+        <div class="social-icons">
+            <a href="mailto:bonomofederico@icloud.com" class="social-icon">
+                <i class="far fa-envelope"></i>
             </a>
-            <div class="scrolling-pill">
-                <span>...bamp unvrs......bamp unvrs......bamp unvrs......bamp unvrs......bamp 🌐 unvrs......bamp unvrs......bamp unvrs......bamp unvrs...</span>
-            </div>
+            <a href="https://www.instagram.com/fit.bamp_/" class="social-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@fit.bamp_/" class="social-icon">
+                <i class="fab fa-tiktok"></i>
+            </a>
         </div>
-    </div>
-
-    <!-- Modale per i crediti -->
-    <div id="creditsModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Crediti</h2>
-            <p>Sito web creato da Federico Bonomo</p>
-            <p>Benvenuti nel mio progetto Bamp Unvrs, dove racconto la mia vita e le mie esperienze.</p>
-            <p style="font-size: 10px;">Visit number: <span id="visitCount"></span></p>
-            <button class="debug-button" onclick="toggleDebugBorders()">
-                <i class="fas fa-bug"></i>
+        <div class="affiliate-links">
+            <a href="http://zumu.be/bamp15" class="affiliate-button">
+                <span class="affiliate-title">Zumub<br>Sconto 15%</span>
+                <img src="Images/Work_in_progress.jpg" alt="Work in Progress Image 1" class="affiliate-image">
+            </a>
+            <a href="https://example.com" class="affiliate-button">
+                <span class="affiliate-title">Work in Progress</span>
+                <img src="Images/Work_in_progress.jpg" alt="Work in Progress Image 2" class="affiliate-image">
+            </a>
+            <a href="https://example.com" class="affiliate-button">
+                <span class="affiliate-title">Work in Progress</span>
+                <img src="Images/Work_in_progress.jpg" alt="Work in Progress Image 3" class="affiliate-image">
+            </a>
+        </div>
+    </main>
+    <footer>
+        <div class="scrolling-banner">
+            <span>...bamp unvrs... 🌐 Promo Code Zumub : bamp15 🌐 ...bamp unvrs......bamp unvrs......bamp unvrs...</span>
+        </div>
+    </footer>
+    <div class="share-menu" id="shareMenu">
+        <div class="share-menu-header">
+            <span class="share-menu-title">Condividi il mio profilo 📍🌐 </span>
+            <span class="share-menu-close" onclick="toggleShareMenu()">×</span>
+        </div>
+        <div class="share-menu-body">
+            <img src="Images/Globe_bamp.gif" alt="Globe Bamp">
+            <div class="username">@fit.bamp</div>
+        </div>
+        <div class="share-icons">
+            <button class="share-icon-button" onclick="copyLink(this)">
+                <i class="fas fa-link"></i>
+            </button>
+            <button class="share-icon-button" onclick="shareWhatsApp(this)">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-icon-button" onclick="shareFacebook(this)">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-icon-button" onclick="shareEmail(this)">
+                <i class="far fa-envelope"></i>
+            </button>
+            <button class="share-icon-button" onclick="shareMore(this)">
+                <i class="fas fa-ellipsis-h"></i>
             </button>
         </div>
     </div>
-
+    <div class="blur-overlay" id="blurOverlay"></div>
     <script>
-        function toggleMode() {
-            const body = document.body;
-            const toggleButton = document.querySelector('.toggle-button i');
+        const shareLink = 'bit.ly/bamp.unvrs';
 
-            body.classList.toggle('night-mode');
-            body.classList.toggle('day-mode');
+        function toggleShareMenu() {
+            const shareMenu = document.getElementById('shareMenu');
+            const blurOverlay = document.getElementById('blurOverlay');
+            shareMenu.classList.toggle('active');
+            blurOverlay.classList.toggle('active');
+            document.body.classList.toggle('menu-active');
+        }
 
-            if (body.classList.contains('day-mode')) {
-                toggleButton.classList.remove('fa-sun');
-                toggleButton.classList.add('fa-moon');
+        document.querySelector('.share-button').addEventListener('click', toggleShareMenu);
+
+        function copyLink(button) {
+            navigator.clipboard.writeText(shareLink)
+                .then(() => alert('Link copiato!'))
+                .catch(err => console.error('Errore nella copia del link: ', err));
+            setActive(button);
+        }
+
+        function shareWhatsApp(button) {
+            window.open('whatsapp://send?text=' + encodeURIComponent(shareLink));
+            setActive(button);
+        }
+
+        function shareFacebook(button) {
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareLink));
+            setActive(button);
+        }
+
+        function shareEmail(button) {
+            window.location.href = "mailto:?subject=Check out this site!&body=" + encodeURIComponent(shareLink);
+            setActive(button);
+        }
+
+        function shareMore(button) {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: shareLink
+                }).then(() => console.log('Successful share'))
+                    .catch((error) => console.log('Error sharing', error));
             } else {
-                toggleButton.classList.remove('fa-moon');
-                toggleButton.classList.add('fa-sun');
+                alert("Web Share API non supportata.");
             }
+            setActive(button);
         }
 
-        function openModal() {
-            document.getElementById('creditsModal').style.display = 'block';
-        }
-
-        function closeModal() {
-            document.getElementById('creditsModal').style.display = 'none';
-        }
-
-        // Chiudi il modale quando l'utente clicca fuori dal contenuto del modale
-        window.onclick = function(event) {
-            const modal = document.getElementById('creditsModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
-
-        // Contatore delle visite
-        function updateVisitCount() {
-            let visitCount = localStorage.getItem('visitCount');
-            if (!visitCount) {
-                visitCount = 0;
-            }
-            visitCount++;
-            localStorage.setItem('visitCount', visitCount);
-            document.getElementById('visitCount').textContent = visitCount;
-        }
-
-        // Aggiorna il contatore delle visite al caricamento della pagina
-        window.onload = updateVisitCount;
-
-        function toggleDebugBorders() {
-            document.body.classList.toggle('debug');
+        function setActive(button) {
+            // Rimuovi la classe 'active' da tutti i pulsanti
+            document.querySelectorAll('.share-icon-button').forEach(btn => btn.classList.remove('active'));
+            // Aggiungi la classe 'active' al pulsante corrente
+            button.classList.add('active');
         }
     </script>
 </body>
