@@ -57,7 +57,8 @@
         .center-image {
             width: 100%; /* Imposta la larghezza al 100% del contenitore */
             max-width: 400px; /* Imposta la larghezza massima per l'immagine */
-            margin: 0 auto; /* Centra l'immagine orizzontalmente */
+            margin: 0; /* Rimuove il margine */
+            padding: 0; /* Rimuove il padding */
             aspect-ratio: 1/1; /* Mantiene il rapporto 1:1 */
             object-fit: contain; /* Mantiene le proporzioni dell'immagine */
             height: auto; /* Permette all'altezza di adattarsi mantenendo le proporzioni */
@@ -268,6 +269,16 @@
         body.menu-active .scrolling-banner {
             display: block;
             filter: none;
+        }
+        .affiliate-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to left, rgba(30, 30, 30, 0.5), rgba(30, 30, 30, 0));
+            z-index: 1;
         }
     </style>
 </head>
