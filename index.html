@@ -56,7 +56,7 @@
         }
         .center-image {
             width: 100%; /* Imposta la larghezza al 100% del contenitore */
-            max-width: 400px; /* Imposta la larghezza massima per l'immagine */
+            max-width: 350px; /* Imposta la larghezza massima per l'immagine */
             margin: 0; /* Rimuove il margine */
             padding: 0; /* Rimuove il padding */
             aspect-ratio: 1/1; /* Mantiene il rapporto 1:1 */
@@ -66,7 +66,7 @@
         .social-icons {
             display: flex;
             gap: 30px;
-            margin-top: 20px;
+            margin-top: -10px; /* Riduce lo spazio sopra le icone social */
             justify-content: center; /* Centra le icone orizzontalmente */
         }
         .social-icon {
@@ -285,7 +285,7 @@
             font-weight: bold;
             text-align: center;
             margin-top: 20px;
-            margin-bottom: 60px; /* Spazio sotto la scritta per estetica */
+            margin-bottom: 100px; /* Spazio sotto la scritta per estetica */
             color: #E0E0E0; /* Colore del testo chiaro */
         }
         .pixel-heart {
@@ -293,10 +293,20 @@
             height: 16px;
             vertical-align: middle; /* Allinea verticalmente l'immagine con il testo */
         }
+        .welcome-title {
+            font-weight: bold;
+            text-align: left;
+            margin-left: 20px;
+            color: #E0E0E0; /* Colore del testo chiaro */
+            position: absolute;
+            top: -10%;
+            left: 10px;
+        }
     </style>
 </head>
 <body>
     <header>
+        <h1 class="welcome-title">Ciao</h1>
         <button class="share-button">
             <i class="fas fa-share-alt"></i>
         </button>
@@ -344,7 +354,6 @@
         </div>
         <div class="share-menu-body">
             <img src="Images/Globe_bamp.gif" alt="Globe Bamp">
-            <div class="username">@fit.bamp</div>
         </div>
         <div class="share-icons">
             <button class="share-icon-button" onclick="copyLink(this)">
@@ -435,6 +444,35 @@
                 window.location.href = webURL;
             }, 200); // Adjust delay as needed
         }
+
+        // Metodo 1: Utilizzo di Local Storage
+        const userNameFromLocalStorage = localStorage.getItem('userName');
+        if (userNameFromLocalStorage) {
+            document.querySelector('.welcome-title').textContent = `Ciao ${userNameFromLocalStorage}`;
+        }
+
+        // Metodo 2: Utilizzo di Cookie
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        const userNameFromCookie = getCookie('userName');
+        if (userNameFromCookie) {
+            document.querySelector('.welcome-title').textContent = `Ciao ${userNameFromCookie}`;
+        }
+
+        // Metodo 3: Utilizzo di una chiamata API
+        fetch('/api/getUserName')
+            .then(response => response.json())
+            .then(data => {
+                const userNameFromAPI = data.userName;
+                if (userNameFromAPI) {
+                    document.querySelector('.welcome-title').textContent = `Ciao ${userNameFromAPI}`;
+                }
+            })
+            .catch(error => console.error('Errore nel recupero del nome utente:', error));
     </script>
 </body>
 </html>
