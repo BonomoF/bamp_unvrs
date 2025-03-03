@@ -277,8 +277,21 @@
             right: 0;
             width: 50%;
             height: 100%;
-            background: linear-gradient(to left, rgba(30, 30, 30, 0.5), rgba(30, 30, 30, 0));
+            background: linear-gradient(to left, rgba(124, 124, 124, 0.5), rgba(30, 30, 30, 0));
             z-index: 1;
+        }
+        .made-with-love {
+            font-family: 'DotGothic16', Arial, sans-serif; /* Font a puntini */
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 60px; /* Spazio sotto la scritta per estetica */
+            color: #E0E0E0; /* Colore del testo chiaro */
+        }
+        .pixel-heart {
+            width: 16px; /* Dimensione del cuore a pixel */
+            height: 16px;
+            vertical-align: middle; /* Allinea verticalmente l'immagine con il testo */
         }
     </style>
 </head>
@@ -306,14 +319,17 @@
                 <span class="affiliate-title">Zumub<br>Sconto 15%</span>
                 <img src="Images/Zumub.png" alt="Work in Progress Image 1" class="affiliate-image">
             </a>
-            <a href="https://example.com" class="affiliate-button">
+            <a href="" class="affiliate-button">
                 <span class="affiliate-title">Work in Progress</span>
                 <img src="Images/Wip.jpeg" alt="Work in Progress Image 2" class="affiliate-image">
             </a>
-            <a href="https://example.com" class="affiliate-button">
+            <a href="" class="affiliate-button">
                 <span class="affiliate-title">Work in Progress</span>
                 <img src="Images/Wip.jpeg" alt="Work in Progress Image 3" class="affiliate-image">
             </a>
+        </div>
+        <div class="made-with-love">
+            Made with <img src="Images/pixel-heart.png" alt="Pixel Heart" class="pixel-heart"> by Federico
         </div>
     </main>
     <footer>
@@ -350,7 +366,7 @@
     </div>
     <div class="blur-overlay" id="blurOverlay"></div>
     <script>
-        const shareLink = 'bit.ly/bamp.unvrs';
+        const shareLink = 'bit.ly/bamp-unvrs';
 
         function toggleShareMenu() {
             const shareMenu = document.getElementById('shareMenu');
@@ -364,7 +380,7 @@
 
         function copyLink(button) {
             navigator.clipboard.writeText(shareLink)
-                .then(() => alert('Link copiato!'))
+                .then(() => alert('Link copiato, condividilo con gli amici!'))
                 .catch(err => console.error('Errore nella copia del link: ', err));
             setActive(button);
         }
