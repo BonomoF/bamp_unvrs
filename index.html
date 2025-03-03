@@ -59,6 +59,9 @@
             max-width: 400px; /* Imposta la larghezza massima per l'immagine */
             margin-top: 0; /* Rimuove il margine superiore */
             align-self: center; /* Centra l'immagine orizzontalmente */
+            aspect-ratio: 1/1; /* Mantiene il rapporto 1:1 */
+            object-fit: contain; /* Mantiene le proporzioni dell'immagine */
+            height: auto; /* Permette all'altezza di adattarsi mantenendo le proporzioni */
         }
         .social-icons {
             display: flex;
@@ -92,11 +95,13 @@
             white-space: nowrap;
             overflow: hidden;
             font-family: 'DotGothic16', Arial, sans-serif; /* Font a puntini */
-            width: 80%;
-            height: 35px;
+            width: calc(100% - 40px); /* Larghezza uguale ai pulsanti affiliate */
+            max-width: 600px; /* Larghezza massima per schermi grandi */
+            height: 50px;
             display: flex;
             align-items: center;
-            margin: 0 auto;
+            margin: 10px auto; /* Aggiunto margine superiore e inferiore */
+            box-sizing: border-box; /* Include padding e border nella larghezza totale */
         }
         .scrolling-banner span {
             display: inline-block;
@@ -113,77 +118,10 @@
         /* Media query per schermi più grandi */
         @media (min-width: 768px) {
             body {
-                width: 50vw; /* Limita la larghezza al 50% della viewport */
+                width: 100%; /* Limita la larghezza al 100% della viewport */
                 margin: 0 auto; /* Centra il contenuto orizzontalmente */
             }
         }
-        /* Stili per il menu di condivisione */
-        .share-menu {
-            position: fixed;
-            bottom: -70%; /* Nasconde il menu inizialmente */
-            left: 0;
-            width: 100%;
-            height: auto; /* Altezza automatica */
-            background-color: #1E1E1E; /* Colore di sfondo scuro per il menu di condivisione */
-            color: #E0E0E0;
-            border-top-left-radius: 25px;
-            border-top-right-radius: 25px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-            transition: bottom 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            z-index: 1001; /* Assicura che il menu sia sopra tutto */
-        }
-
-        .share-menu.active {
-            bottom: 0; /* Mostra il menu */
-        }
-
-        .share-menu-header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .share-menu-title {
-            font-size: 1.5em;
-            text-align: center;
-            flex-grow: 1;
-        }
-
-        .share-menu-close {
-            font-size: 1.5em;
-            cursor: pointer;
-            color: #E0E0E0; /* Colore del testo chiaro */
-        }
-
-        .share-menu-body {
-            width: calc(100% - 40px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-            background-color: #2C2C2C; /* Colore di sfondo per il corpo del menu di condivisione */
-            border-radius: 10px; /* Bordo arrotondato */
-            padding: 5px;
-        }
-
-        .share-menu-body img {
-            width: 90%; /* Aumenta la larghezza dell'immagine */
-            max-width: 400px; /* Imposta la larghezza massima per l'immagine */
-            margin-bottom: 10px;
-        }
-
-        .share-menu-body .username {
-            font-size: 1.2em;
-            text-align: center;
-            color: #00FF00; /* Colore verde fluo per il testo */
-        }
-
         .affiliate-links {
             width: 100%;
             display: flex;
@@ -192,12 +130,12 @@
             gap: 10px; /* Spazio tra i pulsanti */
             margin-top: 20px; /* Spazio sopra i pulsanti */
         }
-
         .affiliate-button {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            width: calc(100% - 60px); /* Riduce la larghezza del pulsante */
+            width: calc(100% - 40px); /* Riduce la larghezza del pulsante */
+            max-width: 600px; /* Larghezza massima per schermi grandi */
             height: 200px; /* Altezza fissa per i pulsanti */
             padding: 10px;
             background-color: #1E1E1E; /* Colore di sfondo scuro per il pulsante */
@@ -207,14 +145,12 @@
             position: relative;
             overflow: hidden;
         }
-
         .affiliate-title {
             font-weight: bold;
             text-align: left;
             z-index: 1; /* Assicura che il testo sia sopra l'immagine */
             margin-left: 30px; /* Aumenta lo spazio a sinistra del titolo */
         }
-
         .affiliate-image {
             position: absolute;
             right: 0;
@@ -225,37 +161,64 @@
             z-index: 0; /* Assicura che l'immagine sia sotto il testo */
             opacity: 0.5; /* Sfuma l'immagine */
         }
-
-        /* Sovrapposizione sfocata */
-        .blur-overlay {
+        .share-menu {
             position: fixed;
-            top: 0;
+            bottom: -70%;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: none;
+            height: auto;
+            background-color: #1E1E1E;
+            color: #E0E0E0;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            transition: bottom 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 1001;
         }
-
-        .blur-overlay.active {
-            display: block;
+        .share-menu.active {
+            bottom: 0;
         }
-
-        /* Applica la sfocatura allo sfondo quando il menu di condivisione è attivo */
-        body.menu-active main,
-        body.menu-active header,
-        body.menu-active footer {
-            filter: blur(5px); /* Aggiunge la sfocatura */
+        .share-menu-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        body.menu-active .scrolling-banner {
-            display: block;
-            filter: none; /* Rimuove la sfocatura dal banner */
+        .share-menu-title {
+            font-size: 1.5em;
+            text-align: center;
+            flex-grow: 1;
         }
-
-        /* Stili per le icone di condivisione */
+        .share-menu-close {
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #E0E0E0;
+        }
+        .share-menu-body {
+            width: calc(100% - 40px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            background-color: #2C2C2C;
+            border-radius: 10px;
+            padding: 5px;
+        }
+        .share-menu-body img {
+            width: 90%;
+            max-width: 400px;
+            margin-bottom: 10px;
+        }
+        .share-menu-body .username {
+            font-size: 1.2em;
+            text-align: center;
+            color: #00FF00;
+        }
         .share-icons {
             display: flex;
             flex-wrap: wrap;
@@ -264,8 +227,8 @@
             margin-top: 20px;
         }
         .share-icon-button {
-            background-color: #333333; /* Cambia il colore di sfondo */
-            color: #E0E0E0; /* Cambia il colore del testo */
+            background-color: #333333;
+            color: #E0E0E0;
             border: none;
             padding: 10px;
             border-radius: 50%;
@@ -279,10 +242,33 @@
             font-size: 20px;
         }
         .share-icon-button:hover {
-            background-color: #555; /* Cambia il colore di sfondo al passaggio del mouse */
+            background-color: #555;
         }
         .share-icon-button.active {
-            color: #00FF00; /* Cambia il colore del testo quando attivo */
+            color: #00FF00;
+        }
+        .blur-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+        }
+        .blur-overlay.active {
+            display: block;
+        }
+        body.menu-active main,
+        body.menu-active header,
+        body.menu-active footer {
+            filter: blur(5px);
+        }
+        body.menu-active .scrolling-banner {
+            display: block;
+            filter: none;
         }
     </style>
 </head>
@@ -308,15 +294,15 @@
         <div class="affiliate-links">
             <a href="http://zumu.be/bamp15" class="affiliate-button">
                 <span class="affiliate-title">Zumub<br>Sconto 15%</span>
-                <img src="Images/Work_in_progress.jpg" alt="Work in Progress Image 1" class="affiliate-image">
+                <img src="Images/Zumub.png" alt="Work in Progress Image 1" class="affiliate-image">
             </a>
             <a href="https://example.com" class="affiliate-button">
                 <span class="affiliate-title">Work in Progress</span>
-                <img src="Images/Work_in_progress.jpg" alt="Work in Progress Image 2" class="affiliate-image">
+                <img src="Images/wip.jpeg" alt="Work in Progress Image 2" class="affiliate-image">
             </a>
             <a href="https://example.com" class="affiliate-button">
                 <span class="affiliate-title">Work in Progress</span>
-                <img src="Images/Work_in_progress.jpg" alt="Work in Progress Image 3" class="affiliate-image">
+                <img src="Images/wip.jpeg" alt="Work in Progress Image 3" class="affiliate-image">
             </a>
         </div>
     </main>
