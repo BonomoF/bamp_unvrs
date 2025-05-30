@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap">
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
+        /* Modifica i colori principali in tutto il sito */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212; /* Colore di sfondo scuro */
-            color: #E0E0E0; /* Colore del testo chiaro */
+            background-color: #FEF1E1; /* Nuovo colore di sfondo */
+            color: #FC350B;            /* Nuovo colore del testo */
             height: 100vh; /* Imposta l'altezza al 100% dell'altezza della viewport */
             overflow-y: auto; /* Permette lo scorrimento verticale */
             display: flex;
@@ -25,14 +26,14 @@
             text-align: center;
             padding: 2.2em 0;
             position: relative;
-            color: #E0E0E0; /* Colore del testo chiaro */
+            color: #FC350B;
         }
         .share-button {
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: #1E1E1E; /* Colore di sfondo scuro per elementi */
-            color: #E0E0E0;
+            background-color: #FC350B;
+            color: #FEF1E1;
             border: none;
             padding: 10px;
             border-radius: 50%;
@@ -47,7 +48,7 @@
     
         }
         .share-button:hover {
-            background-color: #333333; /* Colore di sfondo del pulsante al passaggio del mouse */
+            background-color: #e04a0b;
         }
         main {
             padding: 1em;
@@ -74,16 +75,16 @@
             justify-content: center; /* Centra le icone orizzontalmente */
         }
         .social-icon {
-            color: #E0E0E0; /* Colore del testo chiaro */
+            color: #FC350B;
             font-size: 24px; /* Dimensione delle icone */
             transition: color 0.3s ease;
         }
         .social-icon:hover {
-            color: #00FF00; /* Colore verde fluo al passaggio del mouse */
+            color: #e04a0b; /* Colore verde fluo al passaggio del mouse */
         }
         footer {
             background-color: transparent; /* Rimuove lo sfondo */
-            color: white;
+            color: #FC350B;
             text-align: center;
             padding: 1em 0;
             width: 100%;
@@ -92,8 +93,8 @@
             z-index: 1000; /* Assicura che il footer sia sopra tutto */
         }
         .scrolling-banner {
-            background-color: #00FF00; /* Colore di sfondo verde fluo */
-            color: #121212; /* Colore del testo scuro */
+            background-color: #FC350B; /* Colore di sfondo verde fluo */
+            color: #FEF1E1; /* Colore del testo scuro */
             border-radius: 25px;
             padding: 10px 20px;
             white-space: nowrap;
@@ -142,40 +143,60 @@
             max-width: 600px; /* Larghezza massima per schermi grandi */
             height: 200px; /* Altezza fissa per i pulsanti */
             padding: 10px;
-            background-color: #1E1E1E; /* Colore di sfondo scuro per il pulsante */
-            color: #E0E0E0; /* Colore del testo chiaro */
+            background-color: #FC350B; /* Colore di sfondo scuro per il pulsante */
+            color: #FEF1E1; /* Colore del testo chiaro */
             text-decoration: none;
             border-radius: 10px; /* Bordo arrotondato */
             position: relative;
             overflow: hidden;
+            border: 3px solid #FEF1E1; /* Bordo chiaro in stile sito */
+            box-shadow: 0 2px 12px rgba(252, 53, 11, 0.08); /* Leggera ombra per profondità */
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
+        .affiliate-button:hover {
+            border-color: #FC350B; /* Bordo arancione al passaggio */
+            box-shadow: 0 4px 20px rgba(252, 53, 11, 0.18);
+        }
+        .affiliate-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            margin-left: 30px;
+            z-index: 1;
+            max-width: 50%;
+            height: 100%;
+            justify-content: center; /* Centra verticalmente titolo+desc */
+        }
+
         .affiliate-title {
             font-family: 'Bebas Neue', Arial, sans-serif;
+            font-size: 2.1em;
             font-weight: bold;
-            text-align: left;
-            z-index: 1;
-            margin-left: 30px;
-            font-size: 2.3em;           /* Riduci leggermente la dimensione */
-            align-self: flex-start;
-            margin-top: 20px;
-            line-height: 1.1;
-            max-width: 40%;             /* Limita sempre a metà del riquadro */
-            word-break: break-word;
-            letter-spacing: 1px;
             text-transform: uppercase;
-            text-shadow: 0.5px 0.5px 2px #00FF00, 0 0 0.5px #000;
-            transition: transform 0.2s, text-shadow 0.2s;
-            overflow-wrap: break-word;  /* Forza l'andata a capo se necessario */
+            color: #FEF1E1;
+            margin-bottom: 0.2em;
+            line-height: 1.1;
+            letter-spacing: 1px;
+            text-shadow: 0.5px 0.5px 2px #FC350B, 0 0 0.5px #fff;
+            max-width: 100%;
+            margin-top: 0.5em;      /* Uniforma la distanza dall'alto */
+            margin-left: 0;         /* Nessun margine a sinistra */
+            align-self: flex-start; /* Allinea sempre in alto a sinistra */
         }
-        /* Rimuovi l'effetto hover dal testo */
-        .affiliate-title:hover {
-            transform: none;
-            text-shadow: 1px 1px 4px #00FF00, 0 0 1px #000;
-        }
-        /* Applica l'effetto hover al pulsante affiliate */
-        .affiliate-button:hover .affiliate-title {
-            transform: scale(1.05) rotate(-2deg);
-            text-shadow: 0 0 8px #00FF00, 0 0 2px #000;
+
+        .affiliate-desc {
+            font-family: Arial, sans-serif;
+            font-size: 1em;
+            color: #FEF1E1;
+            opacity: 0.85;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 0.2em;
+            text-shadow: 0.5px 0.5px 2px #FC350B, 0 0 0.5px #fff;
+            max-width: 50%;           /* Limita la larghezza al 50% del pulsante */
+    word-break: break-word;   /* Va a capo se necessario */
+    overflow-wrap: break-word;
         }
         .affiliate-image {
             position: absolute;
@@ -189,17 +210,42 @@
             filter: none; /* Rimuove eventuali filtri */
             transition: opacity 0.3s;
         }
+        .affiliate-button::before {
+            content: none; /* Rimuove la patina/overlay sopra l'immagine */
+        }
+        .made-with-love {
+            font-family: 'DotGothic16', Arial, sans-serif; /* Font a puntini */
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 100px; /* Spazio sotto la scritta per estetica */
+            color: #FC350B; /* Colore del testo chiaro */
+        }
+        .pixel-heart {
+            width: 16px; /* Dimensione del cuore a pixel */
+            height: 16px;
+            vertical-align: middle; /* Allinea verticalmente l'immagine con il testo */
+        }
+        .welcome-title {
+            font-weight: bold;
+            text-align: left;
+            margin-left: 0; /* Togli spazio a sinistra */
+            color: #FC350B;
+            position: absolute;
+            top: -5%;
+            left: 0; /* Allinea completamente a sinistra */
+        }
         .share-menu {
             position: fixed;
-            bottom: -70%;
+            bottom: -100%; /* Cambia da -70% a -100% per essere sempre nascosto */
             left: 0;
             width: 100%;
             height: auto;
-            background-color: #1E1E1E;
-            color: #E0E0E0;
+            background-color: #FEF1E1;
+            color: #FC350B;
             border-top-left-radius: 25px;
             border-top-right-radius: 25px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 -2px 10px rgba(252, 53, 11, 0.1);
             transition: bottom 0.3s ease;
             display: flex;
             flex-direction: column;
@@ -225,7 +271,7 @@
         .share-menu-close {
             font-size: 1.5em;
             cursor: pointer;
-            color: #E0E0E0;
+            color: #FC350B;
         }
         .share-menu-body {
             width: calc(100% - 40px);
@@ -233,7 +279,7 @@
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
-            background-color: #2C2C2C;
+            background-color: #FC350B;
             border-radius: 10px;
             padding: 5px;
         }
@@ -251,13 +297,13 @@
             margin-top: 20px;
         }
         .share-icon-button {
-            background-color: #333333;
-            color: #E0E0E0;
+            background-color: #FC350B;
+            color: #FEF1E1;
             border: none;
             padding: 10px;
             border-radius: 50%;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -266,10 +312,12 @@
             font-size: 20px;
         }
         .share-icon-button:hover {
-            background-color: #555;
+            background-color: #e04a0b;
+            color: #fff;
         }
         .share-icon-button.active {
-            color: #00FF00;
+            color: #FEF1E1;
+            background-color: #e04a0b;
         }
         .blur-overlay {
             position: fixed;
@@ -277,7 +325,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(252, 53, 11, 0.2);
             backdrop-filter: blur(10px);
             z-index: 1000;
             display: none;
@@ -293,38 +341,6 @@
         body.menu-active .scrolling-banner {
             display: block;
             filter: none;
-        }
-        .affiliate-button::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to left, rgba(124, 124, 124, 0.2), rgba(30, 30, 30, 0));
-            z-index: 1;
-        }
-        .made-with-love {
-            font-family: 'DotGothic16', Arial, sans-serif; /* Font a puntini */
-            font-weight: bold;
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 100px; /* Spazio sotto la scritta per estetica */
-            color: #E0E0E0; /* Colore del testo chiaro */
-        }
-        .pixel-heart {
-            width: 16px; /* Dimensione del cuore a pixel */
-            height: 16px;
-            vertical-align: middle; /* Allinea verticalmente l'immagine con il testo */
-        }
-        .welcome-title {
-            font-weight: bold;
-            text-align: left;
-            margin-left: 20px;
-            color: #E0E0E0; /* Colore del testo chiaro */
-            position: absolute;
-            top: -5%;
-            left: 10px;
         }
     </style>
 </head>
@@ -350,15 +366,24 @@
         </div>
         <div class="affiliate-links">
             <a href="http://zumu.be/bamp15" class="affiliate-button">
-                <span class="affiliate-title">Zumub<br>Sconto 15%</span>
+                <div class="affiliate-text">
+                    <span class="affiliate-title">Zumub</span>
+                    <span class="affiliate-desc">Sconto 15% su integratori e sport <br><br>Codice: bamp15</span>
+                </div>
                 <img src="Images/Zumub_estate.png" alt="Zumub_estate" class="affiliate-image">
             </a>
             <a href="https://www.vinted.it/member/97063904-federico99bonny" class="affiliate-button">
-                <span class="affiliate-title">Il mio<br>armadio</span>
+                <div class="affiliate-text">
+                    <span class="affiliate-title">Il mio armadio</span>
+                    <span class="affiliate-desc">Scopri i miei vestiti e accessori su Vinted</span>
+                </div>
                 <img src="Images/Vinted_affiliate.jpg" alt="Vinted_affiliate" class="affiliate-image">
             </a>
             <a href="https://www.amazon.it/hz/wishlist/ls/35TSFWZNXXP0D?ref_=wl_share" class="affiliate-button">
-                <span class="affiliate-title">Fammi un regalo 🎁</span>
+                <div class="affiliate-text">
+                    <span class="affiliate-title">Fammi un regalo 🎁</span>
+                    <span class="affiliate-desc">La mia wishlist Amazon, scegli tu!</span>
+                </div>
                 <img src="Images/wishlist_amazon.jpg" alt="Amazon Wish list" class="affiliate-image">
             </a>          
            
