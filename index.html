@@ -161,12 +161,12 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            justify-content: flex-start;
-            margin-left: 30px;
+            margin-left: 15px;
             z-index: 1;
-            max-width: 50%;
+            max-width: 45%;
             height: 100%;
-            justify-content: center; /* Centra verticalmente titolo+desc */
+            justify-content: flex-start; /* Cambiato da center a flex-start */
+            padding-top: 20px; /* Aggiunto padding in alto */
         }
 
         .affiliate-title {
@@ -175,6 +175,7 @@
             font-weight: bold;
             text-transform: uppercase;
             color: #FEF1E1;
+            margin-top: 0; /* Rimosso il margin-top */
             margin-bottom: 0.2em;
             line-height: 1.1;
             letter-spacing: 1px;
@@ -194,7 +195,7 @@
             line-height: 1.2;
             margin-bottom: 0.2em;
             text-shadow: 0.5px 0.5px 2px #FC350B, 0 0 0.5px #fff;
-            max-width: 50%;           /* Limita la larghezza al 50% del pulsante */
+            max-width: 100%;    /* Cambiato da 50% a 100% del contenitore padre */
     word-break: break-word;   /* Va a capo se necessario */
     overflow-wrap: break-word;
         }
